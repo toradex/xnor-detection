@@ -54,27 +54,39 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     qDebug() << SCREEN_HEIGHT;
     qDebug() << SCREEN_WIDTH;
 
-
     // populate bboxes with new patterns detected
     QRandomGenerator generator;
 
+    generator.seed(index); // changes seed to change values
+
     for(int i=0; i<generator.generateDouble()*(15); i++){
         BoundingBox bbox;
-        bbox.setX(generator.generateDouble()*((SCREEN_WIDTH - MIN_WIDTH)/2));
-        bbox.setY(generator.generateDouble()*((SCREEN_HEIGHT-MIN_HEIGHT)/2));
+
+        bbox.setX(generator.bounded((SCREEN_WIDTH - MIN_WIDTH)/2));
+        bbox.setY(generator.bounded((SCREEN_HEIGHT-MIN_HEIGHT)/2));
         bbox.setHeight(generator.bounded(MIN_HEIGHT, SCREEN_HEIGHT-bbox.y()));
         bbox.setWidth(generator.bounded(MIN_WIDTH, SCREEN_WIDTH-bbox.x()));
-        bbox.setConfidence(generator.generateDouble()*(100));
+        bbox.setConfidence(generator.bounded(100));
         bbox.setLabel(labels[generator.bounded(5)].toStdString());
         bbox.setClass_id((int)generator.bounded(10));
+
+
+        qDebug() << bbox.x();
+        qDebug() << bbox.y();
+        qDebug() << bbox.width();
+        qDebug() << bbox.height();
+        qDebug() << bbox.confidence();
+        qDebug() << QString::fromStdString(bbox.label());
+        qDebug() << bbox.class_id();
 
         r->m_bboxes.append(QRect(bbox.x(), bbox.y(), bbox.width(), bbox.height()));
         r->m_class_ids.append(bbox.class_id());
         r->m_confidence.append(bbox.confidence());
         r->m_labels.append(QString::fromStdString(bbox.label()));
+        qDebug() << ++index;
     }
 
-    qDebug() << ++index;
+
     emit m_frameGrabber->finished(r);
 
     return QVideoFrame();
