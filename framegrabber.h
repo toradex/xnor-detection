@@ -6,7 +6,6 @@
 #include <QString>
 #include <QByteArray>
 #include <QVideoFrame>
-#include <boundingbox.h>
 #include <QVariant>
 
 #define SCREEN_WIDTH 1920
@@ -14,7 +13,7 @@
 #define MIN_WIDTH 100
 #define MIN_HEIGHT 100
 
-/*
+
  struct BoundingBox{
     float x;
     float y;
@@ -25,7 +24,6 @@
     float confidence;
 } ;
 
-*/
 
 class FrameGrabber : public QAbstractVideoFilter
 {
