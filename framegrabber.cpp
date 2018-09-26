@@ -16,7 +16,6 @@ QImage FilterRunnable::imageWrapper(const QVideoFrame &frame){
 
     if (!frame.isReadable()) {
         qWarning("imageWrapper: No mapped image data available for read");
-        qDebug() << "THIS CASE: QT OPENGL";
         return QImage();
     }
 
@@ -33,10 +32,13 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     Q_UNUSED(surfaceFormat);
     Q_UNUSED(flags);
 
+    input->map(QAbstractVideoBuffer::ReadOnly);
+
     QByteArray * imgBytes = new QByteArray((const char*)input->bits(), input->mappedBytes());
 
     if(!imgBytes->isEmpty() && !imgBytes->isNull()){
         // pass byte array to XNOR.ai class
+
     }
 
     FilterResult *r = new FilterResult;
@@ -52,17 +54,16 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
 
     generator.seed(++index); // changes seed to change values
 
-    for(int i=0; i<generator.generateDouble()*(15); i++){
+    for(int i=0; i<generator.generateDouble()*(10); i++){
         BoundingBox bbox;
 
-        bbox.x = (generator.bounded((SCREEN_WIDTH - MIN_WIDTH)/2));
-        bbox.y = (generator.bounded((SCREEN_HEIGHT-MIN_HEIGHT)/2));
-        bbox.height = (generator.bounded(MIN_HEIGHT, SCREEN_HEIGHT-bbox.y));
-        bbox.width = (generator.bounded(MIN_WIDTH, SCREEN_WIDTH-bbox.x));
+        bbox.x = (generator.generateDouble()*(SCREEN_WIDTH - MIN_WIDTH)/2);
+        bbox.y = (generator.generateDouble()*(SCREEN_HEIGHT-MIN_HEIGHT)/2);
+        bbox.height = (generator.generateDouble()*(SCREEN_HEIGHT-bbox.y-MIN_HEIGHT));
+        bbox.width = (generator.generateDouble()*(SCREEN_WIDTH-bbox.x-MIN_WIDTH));
         bbox.confidence = (generator.bounded(100));
         bbox.label = (labels[generator.bounded(5)].toStdString());
         bbox.class_id = ((int)generator.bounded(10));
-
 
         r->m_bboxes.append(QRect(bbox.x, bbox.y, bbox.width, bbox.height));
         r->m_class_ids.append(bbox.class_id);
@@ -72,6 +73,10 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
 
 
     emit m_frameGrabber->finished(r);
+
+    // free imgBytes
+    delete imgBytes;
+    imgBytes = NULL;
 
     return QVideoFrame();
 }

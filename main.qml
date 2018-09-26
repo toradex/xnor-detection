@@ -10,7 +10,7 @@ Window {
 
     Camera{
         id: camera
-        deviceId: "/dev/video1"
+        deviceId: "/dev/video0"
     }
 
     VideoOutput{
@@ -44,11 +44,9 @@ Window {
                 bbox.class_id = classIds[i]
                 bbox.label = labels[i]
                 bbox.confidence = conf[i]
-                bbox.visible = true
+                bbox.visible = true 
             }
-
         }
-
     }
 
     function resetRects(){
