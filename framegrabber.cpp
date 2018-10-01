@@ -55,20 +55,20 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     generator.seed(++index); // changes seed to change values
 
     for(int i=0; i<generator.generateDouble()*(10); i++){
-        BoundingBox bbox;
+        xnor_bounding_box bbox;
 
-        bbox.x = (generator.generateDouble()*(SCREEN_WIDTH - MIN_WIDTH)/2);
-        bbox.y = (generator.generateDouble()*(SCREEN_HEIGHT-MIN_HEIGHT)/2);
-        bbox.height = (generator.generateDouble()*(SCREEN_HEIGHT-bbox.y-MIN_HEIGHT));
-        bbox.width = (generator.generateDouble()*(SCREEN_WIDTH-bbox.x-MIN_WIDTH));
-        bbox.confidence = (generator.bounded(100));
-        bbox.label = (labels[generator.bounded(5)].toStdString());
-        bbox.class_id = ((int)generator.bounded(10));
+        bbox.rectangle.x = (generator.generateDouble()*(SCREEN_WIDTH - MIN_WIDTH)/2);
+        bbox.rectangle.y = (generator.generateDouble()*(SCREEN_HEIGHT-MIN_HEIGHT)/2);
+        bbox.rectangle.height = (generator.generateDouble()*(SCREEN_HEIGHT-bbox.rectangle.y-MIN_HEIGHT));
+        bbox.rectangle.width = (generator.generateDouble()*(SCREEN_WIDTH-bbox.rectangle.x-MIN_WIDTH));
+        bbox.class_label.confidence = (generator.bounded(100));
+        bbox.class_label.label = (labels[generator.bounded(5)].toStdString().data());
+        bbox.class_label.class_id = ((int)generator.bounded(10));
 
-        r->m_bboxes.append(QRect(bbox.x, bbox.y, bbox.width, bbox.height));
-        r->m_class_ids.append(bbox.class_id);
-        r->m_confidence.append(bbox.confidence);
-        r->m_labels.append(QString::fromStdString(bbox.label));
+        r->m_bboxes.append(QRect(bbox.rectangle.x, bbox.rectangle.y, bbox.rectangle.width, bbox.rectangle.height));
+        r->m_class_ids.append(bbox.class_label.class_id);
+        r->m_confidence.append(bbox.class_label.confidence);
+        r->m_labels.append(QString::fromStdString(bbox.class_label.label));
     }
 
 

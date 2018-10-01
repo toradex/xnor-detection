@@ -8,21 +8,12 @@
 #include <QVideoFrame>
 #include <QVariant>
 
+#include <public.h>
+
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define MIN_WIDTH 100
 #define MIN_HEIGHT 100
-
-
- struct BoundingBox{
-    float x;
-    float y;
-    float width;
-    float height;
-    std::int32_t class_id;
-    std::string label;
-    float confidence;
-} ;
 
 
 class FrameGrabber : public QAbstractVideoFilter
