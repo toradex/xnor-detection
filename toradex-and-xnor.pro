@@ -17,9 +17,11 @@ SOURCES += \
         main.cpp \
     framegrabber.cpp
 
-RESOURCES += qml.qrc
+INCLUDEPATH += /home/lburini/qt-tutorials/xnorai/
 
-INCLUDEPATH =+ ../xnorai/
+LIBS += -L/home/lburini/qt-tutorials/xnorai/ -lxnorai-fast-person-detector
+
+RESOURCES += qml.qrc
 
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

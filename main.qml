@@ -29,8 +29,6 @@ Window {
             var classIds = e.classIds();
             var conf = e.confidences();
 
-            console.log("FOUND " + bb.length + " RECTS")
-
             resetRects()
 
             for (var i = 0; i < bb.length; ++i) {

@@ -7,14 +7,9 @@
 #include <QByteArray>
 #include <QVideoFrame>
 #include <QVariant>
-
 #include <public.h>
 
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
-#define MIN_WIDTH 100
-#define MIN_HEIGHT 100
-
+#define MAX_OUT_SIZE 10
 
 class FrameGrabber : public QAbstractVideoFilter
 {
@@ -39,7 +34,6 @@ public:
     QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) Q_DECL_OVERRIDE;
 
     int index=0;
-    QImage imageWrapper(const QVideoFrame &frame);
     const QVector<QString> labels = {"Cat", "Dog", "Turtle", "Person", "Tordy", "Alien"};
 
 private:
