@@ -21,16 +21,17 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
 
     QByteArray * imgBytes = new QByteArray((const char*)input->bits(), input->mappedBytes());
 
+    xnor_model *xmodel = NULL;
+    xnor_error *xerror = NULL; // error returned by the image handles
+    xnor_input *xinput; // input handle
+    xnor_evaluation_result *xresult;
+    xnor_evaluation_result_type xtype;
+    xnor_bounding_box bbox[MAX_OUT_SIZE];
+    int32_t out_size;
+
     if(!imgBytes->isEmpty() && !imgBytes->isNull()){
 
         // pass byte array to XNOR.ai class
-        xnor_model *xmodel = NULL;
-        xnor_error *xerror = NULL; // error returned by the image handles
-        xnor_input *xinput; // input handle
-        xnor_evaluation_result *xresult;
-        xnor_evaluation_result_type xtype;
-        xnor_bounding_box bbox[MAX_OUT_SIZE];
-        int32_t out_size;
 
 
         /*** LOAD MODEL BUILT IN ***/
@@ -128,6 +129,10 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     // free imgBytes
     delete imgBytes;
     imgBytes = NULL;
+
+    xnor_model_free(xmodel);
+    xnor_error_free(xerror);
+    xnor_input_free(xinput);
 
     return QVideoFrame();
 }
