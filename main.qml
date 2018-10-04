@@ -28,6 +28,7 @@ Window {
             var labels = e.labels();
             var classIds = e.classIds();
             var conf = e.confidences();
+            fpsText.fps = e.fps()
 
             resetRects()
 
@@ -48,8 +49,26 @@ Window {
     }
 
     function resetRects(){
+
         for (var i = 0; i < rectRepeater.count; ++i)
             rectRepeater.itemAt(i).visible = false;
+    }
+
+    Rectangle{
+        color: Qt.rgba(0, 0, 0, 0.5)
+        width: fpsText.width + 20
+        height: fpsText.height + 20
+        radius: width/2
+        anchors.topMargin: 10
+        anchors.leftMargin: 10
+        Text {
+            id: fpsText
+            property double fps: 0
+            text: "FPS: " + Math.round(fps).toString()
+            color: "white"
+            font.pixelSize: 30
+            anchors.centerIn: parent
+        }
     }
 
 
