@@ -33,8 +33,10 @@ class FilterRunnable : public QVideoFilterRunnable
 public:
     FilterRunnable(FrameGrabber *frameGrabber);
     QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) Q_DECL_OVERRIDE;
+    xnor_model *xmodel = NULL;
     QTime timer;
     int frameCount=0;
+    bool loadModel = true;
 
 private:
     FrameGrabber *m_frameGrabber;
@@ -47,6 +49,8 @@ class FilterResult : public QObject
 
 public slots:
     QVariant fps() const {return m_fps;}
+    QVariant avgFps() const {return m_avgFps;}
+    QVariant deltaT() const {return m_deltaT;}
     QVariantList bboxes() const {return m_bboxes;} // contains the rects
     QVariantList labels() const {return m_labels;} // contains the labels
     QVariantList classIds() const {return m_class_ids;} // contains the class ids
@@ -54,7 +58,7 @@ public slots:
 
 private:
     QVariantList m_bboxes, m_labels, m_class_ids, m_confidence;
-    QVariant m_fps;
+    QVariant m_fps, m_avgFps, m_deltaT;
     friend class FilterRunnable;
 };
 

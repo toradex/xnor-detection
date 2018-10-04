@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.7.1, 2018-10-04T12:39:57. -->
+<!-- Written by QtCreator 4.7.1, 2018-10-04T16:00:54. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -293,7 +293,7 @@
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2018-10-04T12:00:31.084</value>
+       <value type="QDateTime">2018-10-04T15:53:52.134</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>
@@ -606,8 +606,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-B2Qt-Release/toradex-and-xnor</value>
-       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-B2Qt-Debug/toradex-and-xnor</value>
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-B2Qt-Profile/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-B2Qt-Debug/toradex-and-xnor</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
        <value type="QString">10.22.1.53</value>
@@ -626,8 +626,8 @@
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2018-09-28T13:22:49.759</value>
-       <value type="QDateTime">2018-09-28T13:21:42.640</value>
        <value type="QDateTime">2018-09-28T13:22:17.408</value>
+       <value type="QDateTime">2018-09-28T13:21:42.640</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>
@@ -1520,9 +1520,9 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
-       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Release/toradex-and-xnor</value>
-       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Profile/toradex-and-xnor</value>
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Debug/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Profile/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Release/toradex-and-xnor</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
        <value type="QString">172.16.58.1</value>
@@ -1540,9 +1540,9 @@
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx6/toolchain/sysroots/cortexa9hf-neon-poky-linux-gnueabi</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2018-09-26T17:02:00.474</value>
-       <value type="QDateTime">2018-09-27T13:29:11.281</value>
        <value type="QDateTime">2018-09-26T15:48:47.664</value>
+       <value type="QDateTime">2018-09-27T13:29:11.281</value>
+       <value type="QDateTime">2018-09-26T17:02:00.474</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>

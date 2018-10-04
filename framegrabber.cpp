@@ -18,31 +18,33 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     Q_UNUSED(flags);
 
     timer.restart();
-    //auto start = std::chrono::duration<double>(std::chrono::system_clock::now().time_since_epoch());
+
     input->map(QAbstractVideoBuffer::ReadOnly);
 
     QByteArray * imgBytes = new QByteArray((const char*)input->bits(), input->mappedBytes());
 
-    xnor_model *xmodel = NULL;
     xnor_error *xerror = NULL; // error returned by the image handles
-    xnor_input *xinput; // input handle
     xnor_evaluation_result *xresult;
     xnor_evaluation_result_type xtype;
+    xnor_input *xinput; // input handle
     xnor_bounding_box bbox[MAX_OUT_SIZE];
     int32_t out_size;
+
 
     // pass byte array to XNOR.ai class
     if(!imgBytes->isEmpty() && !imgBytes->isNull()){
 
-        /*** LOAD MODEL BUILT IN ***/
-        xerror = xnor_model_load_built_in("", NULL, &xmodel);
+        if(loadModel){
+            /*** LOAD MODEL BUILT IN ***/
+            xerror = xnor_model_load_built_in("", NULL, &xmodel);
 
-        if(xerror != NULL){
-            qDebug() << "xnor_model_load_built_in return error\n"
-                     << xnor_error_get_description(xerror);
-            return QVideoFrame();
+            if(xerror != NULL){
+                qDebug() << "xnor_model_load_built_in return error\n"
+                         << xnor_error_get_description(xerror);
+                return QVideoFrame();
+            }
+            loadModel = false;
         }
-        //qDebug() << "xnor_model_load_built_in successful!";
 
 
         /*** CREATE A HANDLE TO IMAGE INPUT ***/
@@ -71,7 +73,6 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
             qDebug() << "xnor_input_create_" << input->pixelFormat() << "image error!\n"
                      << xnor_error_get_description(xerror);
         }
-        //qDebug() << "xnor_input_create_" << input->pixelFormat() << "image successful!";
 
         /*** EVALUATES THE GIVEN MODEL ON THE GIVEN INPUT  ***/
         xerror = xnor_model_evaluate(xmodel, xinput, NULL, &xresult);
@@ -80,7 +81,8 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
             qDebug() << "xnor_model_evaluate error!\n"
                      << xnor_error_get_description(xerror);
         }
-        //qDebug() << "xnor_model_evaluate successful!";
+
+        FilterResult *r = new FilterResult;
 
         /*** GET THE TYPE OF AN EVALUATION RESULT ***/
         xtype = xnor_evaluation_result_get_type(xresult);
@@ -91,7 +93,7 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
             break;
             }
         case 1:{
-            //qDebug() << "Bounding Boxes result type";
+            //qDebug() << "Bounding Boxes result type";*/
             FilterResult *r = new FilterResult;
 
             // clean last patterns detected
@@ -102,8 +104,6 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
 
             out_size = xnor_evaluation_result_get_bounding_boxes(xresult, bbox, MAX_OUT_SIZE);
 
-            //qDebug() << "FOUND " << out_size << "BOUNDING BOXES";
-
             xnor_evaluation_result_free(xresult);
 
             for(int i=0; i<out_size; i++){
@@ -113,10 +113,8 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
                 r->m_confidence.append(bbox[i].class_label.confidence*100);
                 r->m_labels.append(bbox[i].class_label.label);
             }
-
-            //auto end = std::chrono::duration<double>(std::chrono::system_clock::now().time_since_epoch());
-            //r->m_fps = 1/(double)(end-start).count();
             r->m_fps = 1000/timer.elapsed();
+            r->m_deltaT = timer.elapsed();
             emit m_frameGrabber->finished(r);
             break;
             }
@@ -133,7 +131,6 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     delete imgBytes;
     imgBytes = NULL;
 
-    xnor_model_free(xmodel);
     xnor_error_free(xerror);
     xnor_input_free(xinput);
 

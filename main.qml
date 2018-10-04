@@ -29,6 +29,7 @@ Window {
             var classIds = e.classIds();
             var conf = e.confidences();
             fpsText.fps = e.fps()
+            fpsText.deltaT = e.deltaT()
 
             resetRects()
 
@@ -58,13 +59,15 @@ Window {
         color: Qt.rgba(0, 0, 0, 0.5)
         width: fpsText.width + 20
         height: fpsText.height + 20
-        radius: width/2
+        radius: width/2.5
         anchors.topMargin: 10
         anchors.leftMargin: 10
         Text {
             id: fpsText
             property double fps: 0
-            text: "FPS: " + Math.round(fps).toString()
+            property double deltaT: 0
+            text: "FPS: " + Math.round(fps).toString() +
+                  "\nDelta T (ms): " + Math.round(deltaT).toString()
             color: "white"
             font.pixelSize: 30
             anchors.centerIn: parent
