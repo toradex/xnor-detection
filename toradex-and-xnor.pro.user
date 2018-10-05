@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.7.1, 2018-10-04T16:00:54. -->
+<!-- Written by QtCreator 4.7.1, 2018-10-05T12:48:47. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -282,18 +282,23 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
+       <value type="QString">10.22.1.103</value>
        <value type="QString">10.22.1.92</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedRemotePaths">
        <value type="QString">/opt/toradex-and-xnor/bin</value>
+       <value type="QString">/opt/toradex-and-xnor/bin</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedSysroots">
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
+       <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2018-10-04T15:53:52.134</value>
+       <value type="QDateTime">2018-10-05T11:28:18.300</value>
+       <value type="QDateTime">2018-10-05T12:47:05.569</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>

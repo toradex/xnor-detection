@@ -17,6 +17,7 @@ SOURCES += \
         main.cpp \
     framegrabber.cpp
 
+
 INCLUDEPATH += /home/lburini/qt-tutorials/xnorai/
 
 LIBS += -L/home/lburini/qt-tutorials/xnorai/ -lxnorai-fast-person-detector
