@@ -4,10 +4,8 @@
 
 QVideoFilterRunnable *FrameGrabber::createFilterRunnable()
 {
-    QThread *thread;
     FilterRunnable *filter = new FilterRunnable(this);
 
-    connect(thread, SIGNAL(started()), filter, METHOD(process()));
     return filter;
 }
 
@@ -15,6 +13,18 @@ FilterRunnable::FilterRunnable(FrameGrabber *frameGrabber)
     : m_frameGrabber(frameGrabber)
 {
 
+}
+
+QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags){
+    Q_UNUSED(surfaceFormat);
+    Q_UNUSED(flags);
+
+    currentFrame = input;
+
+    // give frame to XNOR.ai functions
+    process();
+
+    return QVideoFrame();
 }
 
 void FilterRunnable::process(){
@@ -121,7 +131,6 @@ void FilterRunnable::process(){
             }
         }
 
-
     currentFrame->unmap();
 
     // free imgBytes
@@ -132,16 +141,3 @@ void FilterRunnable::process(){
     xnor_error_free(xerror);
     xnor_input_free(xinput);
 }
-
-QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags){
-    Q_UNUSED(surfaceFormat);
-    Q_UNUSED(flags);
-
-    currentFrame = input;
-
-    process();
-
-
-    return QVideoFrame();
-}
-
