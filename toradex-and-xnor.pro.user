@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.7.1, 2018-10-08T11:00:46. -->
+<!-- Written by QtCreator 4.7.1, 2018-10-09T16:18:46. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -79,7 +79,7 @@
       <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibrary">true</value>
       <value type="QString" key="QtProjectManager.QMakeBuildStep.QMakeArguments"></value>
       <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
-      <value type="bool" key="QtProjectManager.QMakeBuildStep.SeparateDebugInfo">false</value>
+      <value type="bool" key="QtProjectManager.QMakeBuildStep.SeparateDebugInfo">true</value>
       <value type="bool" key="QtProjectManager.QMakeBuildStep.UseQtQuickCompiler">false</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
@@ -283,20 +283,35 @@
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
+       <value type="QString">10.22.1.122</value>
+       <value type="QString">10.22.1.121</value>
+       <value type="QString">10.22.1.104</value>
        <value type="QString">10.22.1.92</value>
        <value type="QString">10.22.1.103</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedRemotePaths">
        <value type="QString">/opt/toradex-and-xnor/bin</value>
        <value type="QString">/opt/toradex-and-xnor/bin</value>
+       <value type="QString">/opt/toradex-and-xnor/bin</value>
+       <value type="QString">/opt/toradex-and-xnor/bin</value>
+       <value type="QString">/opt/toradex-and-xnor/bin</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedSysroots">
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
+       <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
+       <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
+       <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
+       <value type="QDateTime">2018-10-09T16:17:41.148</value>
+       <value type="QDateTime">2018-10-09T15:59:56.198</value>
+       <value type="QDateTime">2018-10-09T15:58:07.101</value>
        <value type="QDateTime">2018-10-05T17:09:07.303</value>
        <value type="QDateTime">2018-10-05T11:28:18.300</value>
       </valuelist>

@@ -1,4 +1,4 @@
-QT += quick multimedia multimedia-private multimediawidgets
+QT += quick multimedia testlib
 QT -= core gui
 CONFIG += c++11
 

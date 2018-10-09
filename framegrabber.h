@@ -1,6 +1,7 @@
 #ifndef FRAMEGRABBER_H
 #define FRAMEGRABBER_H
 
+#include <QObject>
 #include <QAbstractVideoFilter>
 #include <QTime>
 #include <QVideoSurfaceFormat>
@@ -9,6 +10,8 @@
 #include <QVideoFrame>
 #include <QThread>
 #include <QVariant>
+#include <QDebug>
+
 #include <public.h>
 
 #define MAX_OUT_SIZE 10
@@ -27,14 +30,13 @@ private:
 };
 
 
+
 class FilterRunnable : public QVideoFilterRunnable
 {
+
 public:
     FilterRunnable(FrameGrabber *frameGrabber);
     QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) Q_DECL_OVERRIDE;
-    QVideoFrame *currentFrame;
-
-    Q_INVOKABLE void process();
 
 private:
     FrameGrabber *m_frameGrabber;
@@ -49,6 +51,7 @@ private:
     int frameCount=0;
     bool loadModel = true;
 };
+
 
 class FilterResult : public QObject
 {

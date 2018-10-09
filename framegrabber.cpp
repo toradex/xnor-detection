@@ -1,5 +1,6 @@
 #include "framegrabber.h"
-#include <QDebug>
+#include <QTest>
+#include <QSignalSpy>
 #include <stdlib.h>
 
 QVideoFilterRunnable *FrameGrabber::createFilterRunnable()
@@ -19,25 +20,22 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     Q_UNUSED(surfaceFormat);
     Q_UNUSED(flags);
 
-    currentFrame = input;
+    /*
+    Controller *controller = new Controller(input);
+    qDebug() << controller;
+    qDebug() << controller->connect(controller, SIGNAL(handleBboxes(QObject *)), m_frameGrabber, SIGNAL(finished(QObject *)));
 
-    // give frame to XNOR.ai functions
-    process();
+    */
+    //controller->~Controller();
 
-    return QVideoFrame();
-}
-
-void FilterRunnable::process(){
-    currentFrame->map(QAbstractVideoBuffer::ReadOnly);
-
-    FilterResult *r = new FilterResult;
+    input->map(QAbstractVideoBuffer::ReadOnly);
 
     if(frameCount==0){
         timerAvg.start();
     }
     timer.restart();
 
-    QByteArray * imgBytes = new QByteArray((const char*)currentFrame->bits(), currentFrame->mappedBytes());
+    QByteArray * imgBytes = new QByteArray((const char*)input->bits(), input->mappedBytes());
 
     // pass byte array to XNOR.ai class
     if(!imgBytes->isEmpty() && !imgBytes->isNull()){
@@ -53,21 +51,21 @@ void FilterRunnable::process(){
             }
 
             /*** CREATE A HANDLE TO IMAGE INPUT ***/
-            switch (currentFrame->pixelFormat()) {
+            switch (input->pixelFormat()) {
             case QVideoFrame::Format_YUV420P:{
                 // splits into planes
-                uint8_t *y = (uint8_t *)currentFrame->bits(1); // each one
-                uint8_t *u = (uint8_t *)currentFrame->bits(2); // of the
-                uint8_t *v = (uint8_t *)currentFrame->bits(3); // planes
-                xerror = xnor_input_create_yuv420p_image(currentFrame->width(), currentFrame->height(),y, u, v, &xinput);
+                uint8_t *y = (uint8_t *)input->bits(1); // each one
+                uint8_t *u = (uint8_t *)input->bits(2); // of the
+                uint8_t *v = (uint8_t *)input->bits(3); // planes
+                xerror = xnor_input_create_yuv420p_image(input->width(), input->height(),y, u, v, &xinput);
                 break;
             }
             case QVideoFrame::Format_RGB32:{
-                xerror = xnor_input_create_rgb_image(currentFrame->width(), currentFrame->height(), (uint8_t *)imgBytes->data(), &xinput);
+                xerror = xnor_input_create_rgb_image(input->width(), input->height(), (uint8_t *)imgBytes->data(), &xinput);
                 break;
             }
             case QVideoFrame::Format_YUYV:{ // YUYV IS YUV422
-               xerror = xnor_input_create_yuv422_image(currentFrame->width(), currentFrame->height(), (uint8_t *)imgBytes->data(), &xinput);
+               xerror = xnor_input_create_yuv422_image(input->width(), input->height(), (uint8_t *)imgBytes->data(), &xinput);
                 break;
             }
             default:
@@ -75,7 +73,7 @@ void FilterRunnable::process(){
             }
 
             if(xerror != NULL){
-                qDebug() << "xnor_input_create_" << currentFrame->pixelFormat() << "image error!\n"
+                qDebug() << "xnor_input_create_" << input->pixelFormat() << "image error!\n"
                          << xnor_error_get_description(xerror);
             }
 
@@ -87,8 +85,6 @@ void FilterRunnable::process(){
                          << xnor_error_get_description(xerror);
             }
 
-            FilterResult *r = new FilterResult;
-
             /*** GET THE TYPE OF AN EVALUATION RESULT ***/
             xtype = xnor_evaluation_result_get_type(xresult);
 
@@ -98,21 +94,17 @@ void FilterRunnable::process(){
                 break;
                 }
             case 1:{
-                //qDebug() << "Bounding Boxes result type";*/
+                qDebug() << "Bounding Boxes result type";
 
-                // clean last patterns detected
-                r->m_bboxes.clear();
-                r->m_class_ids.clear();
-                r->m_confidence.clear();
-                r->m_labels.clear();
+                FilterResult *r = new FilterResult;
 
                 out_size = xnor_evaluation_result_get_bounding_boxes(xresult, bbox, MAX_OUT_SIZE);
 
                 xnor_evaluation_result_free(xresult);
 
                 for(int i=0; i<out_size; i++){
-                    r->m_bboxes.append(QRect(bbox[i].rectangle.x*(currentFrame->width()), bbox[i].rectangle.y*(currentFrame->height()),
-                                             bbox[i].rectangle.width*(currentFrame->width()), bbox[i].rectangle.height*currentFrame->height()));
+                    r->m_bboxes.append(QRect(bbox[i].rectangle.x*(input->width()), bbox[i].rectangle.y*(input->height()),
+                                             bbox[i].rectangle.width*(input->width()), bbox[i].rectangle.height*input->height()));
                     r->m_class_ids.append(bbox[i].class_label.class_id);
                     r->m_confidence.append(bbox[i].class_label.confidence*100);
                     r->m_labels.append(bbox[i].class_label.label);
@@ -121,7 +113,9 @@ void FilterRunnable::process(){
                 r->m_fps = 1000/timer.elapsed();
                 r->m_deltaT = timer.elapsed();
                 r->m_fpsAvg = 1000*frameCount/timerAvg.elapsed();
+                qDebug() << "BBOXES READY";
                 emit m_frameGrabber->finished(r);
+
                 break;
                 }
             case 2:{
@@ -130,8 +124,9 @@ void FilterRunnable::process(){
                 }
             }
         }
+    qDebug() << "finished processing";
 
-    currentFrame->unmap();
+    input->unmap();
 
     // free imgBytes
     delete imgBytes;
@@ -140,4 +135,6 @@ void FilterRunnable::process(){
     // free xnor
     xnor_error_free(xerror);
     xnor_input_free(xinput);
+    return QVideoFrame();
 }
+
