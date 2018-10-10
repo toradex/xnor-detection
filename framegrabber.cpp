@@ -1,6 +1,4 @@
 #include "framegrabber.h"
-#include <QTest>
-#include <QSignalSpy>
 #include <stdlib.h>
 
 QVideoFilterRunnable *FrameGrabber::createFilterRunnable()
@@ -13,7 +11,6 @@ QVideoFilterRunnable *FrameGrabber::createFilterRunnable()
 FilterRunnable::FilterRunnable(FrameGrabber *frameGrabber)
     : m_frameGrabber(frameGrabber)
 {
-
 }
 
 QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags){
@@ -46,10 +43,11 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
             switch (input->pixelFormat()) {
             case QVideoFrame::Format_YUV420P:{
                 // splits into planes
-                uint8_t *y = (uint8_t *)input->bits(1); // each one
-                uint8_t *u = (uint8_t *)input->bits(2); // of the
-                uint8_t *v = (uint8_t *)input->bits(3); // planes
-                xerror = xnor_input_create_yuv420p_image(input->width(), input->height(),y, u, v, &xinput);
+                uint8_t *y = static_cast<uint8_t *>(input->bits(1)); // each one
+                uint8_t *u = static_cast<uint8_t *>(input->bits(2)); // of the
+                uint8_t *v = static_cast<uint8_t *>(input->bits(3)); // planes
+                xerror = xnor_input_create_yuv420p_image(input->width(),
+                                                         input->height(),y, u, v, &xinput);
                 break;
             }
             case QVideoFrame::Format_RGB32:{
@@ -106,8 +104,8 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
                 r->m_deltaT = timer.elapsed();
                 r->m_fpsAvg = 1000*frameCount/timerAvg.elapsed();
                 //qDebug() << "BBOXES READY";
+                //emit m_frameGrabber->finished(r);
                 emit m_frameGrabber->finished(r);
-
                 break;
                 }
             case 2:{
@@ -126,6 +124,8 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     // free xnor
     xnor_error_free(xerror);
     xnor_input_free(xinput);
+
     return QVideoFrame();
 }
+
 

@@ -3,12 +3,13 @@
 
 #include <QObject>
 #include <QAbstractVideoFilter>
+#include <QThreadPool>
 #include <QTime>
 #include <QVideoSurfaceFormat>
 #include <QString>
 #include <QByteArray>
 #include <QVideoFrame>
-#include <QThread>
+#include <QRunnable>
 #include <QVariant>
 #include <QDebug>
 
@@ -28,7 +29,6 @@ signals:
 private:
     friend class FilterRunnable;
 };
-
 
 
 class FilterRunnable : public QVideoFilterRunnable
