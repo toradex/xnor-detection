@@ -20,14 +20,6 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
     Q_UNUSED(surfaceFormat);
     Q_UNUSED(flags);
 
-    /*
-    Controller *controller = new Controller(input);
-    qDebug() << controller;
-    qDebug() << controller->connect(controller, SIGNAL(handleBboxes(QObject *)), m_frameGrabber, SIGNAL(finished(QObject *)));
-
-    */
-    //controller->~Controller();
-
     input->map(QAbstractVideoBuffer::ReadOnly);
 
     if(frameCount==0){
@@ -90,11 +82,11 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
 
             switch (xtype) {
             case 0:{
-                qDebug() << "Unknown result type";
+                //qDebug() << "Unknown result type";
                 break;
                 }
             case 1:{
-                qDebug() << "Bounding Boxes result type";
+                //qDebug() << "Bounding Boxes result type";
 
                 FilterResult *r = new FilterResult;
 
@@ -113,18 +105,17 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
                 r->m_fps = 1000/timer.elapsed();
                 r->m_deltaT = timer.elapsed();
                 r->m_fpsAvg = 1000*frameCount/timerAvg.elapsed();
-                qDebug() << "BBOXES READY";
+                //qDebug() << "BBOXES READY";
                 emit m_frameGrabber->finished(r);
 
                 break;
                 }
             case 2:{
-                qDebug() << "Class Labels result type";
+                //qDebug() << "Class Labels result type";
                 break;
                 }
             }
         }
-    qDebug() << "finished processing";
 
     input->unmap();
 

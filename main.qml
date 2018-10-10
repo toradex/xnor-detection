@@ -63,13 +63,13 @@ Window {
                         active: true
                         onFinished: {
                             var bb = e.bboxes();
-                            console.log("BB: " + bb)
+                            //console.log("BB: " + bb)
                             var labels = e.labels();
-                            console.log("labels: " + labels)
+                            //console.log("labels: " + labels)
                             var classIds = e.classIds();
-                            console.log("classIds: " + bb)
+                            //console.log("classIds: " + bb)
                             var conf = e.confidences();
-                            console.log("confidences: " + bb)
+                            //console.log("confidences: " + bb)
                             fpsText.fps = e.fps()
                             fpsText.deltaT = e.deltaT()
                             fpsText.fpsAvg = e.fpsAvg()
@@ -109,7 +109,6 @@ Window {
                             property double fpsAvg: 0
                             property double deltaT: 0
                             text: "FPS: " + Math.round(fps).toString() +
-                                  "\nAvg FPS: " + Math.round(fpsAvg).toString() +
                                   "\nDelta T (ms): " + Math.round(deltaT).toString() +
                                   "\n Camera " + index
                             color: "white"
