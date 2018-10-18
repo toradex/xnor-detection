@@ -1,4 +1,4 @@
-QT += quick multimedia testlib
+QT += quick multimedia opengl
 QT -= core gui
 CONFIG += c++11
 
@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    framegrabber.cpp
+    framegrabber.cpp \
+    videooverlay.cpp
 
 
 INCLUDEPATH += ../xnorai/
@@ -37,4 +38,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    framegrabber.h
+    framegrabber.h \
+    videooverlay.h

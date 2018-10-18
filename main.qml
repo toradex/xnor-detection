@@ -8,51 +8,41 @@ import qt.toradex.xnor 1.0
 Window {
     id: window
     visible: true
-    visibility: Window.FullScreen
+    //visibility: Window.FullScreen
+    width: 1920
+    height: 1080
+
 
     Rectangle{
         anchors.fill: parent
-        color: "#015289"
-        Row{
-            id: row
-            anchors.top: parent.top
-            spacing: Screen.width-toradexLogo.width-xnorLogo.width
-            bottomPadding: 10
-            Image{
-                id: toradexLogo
-                source: "qrc:/imgs/toradex-logo.png"
-            }
-            Image{
-                id: xnorLogo
-                source: "qrc:/imgs/xnor-ai-logo.png"
-            }
-        }
-
+        color: "#1f438d"
+        //color: "transparent"
         GridLayout{
             columns: 2
-            columnSpacing: 20
-            rowSpacing: 20
-            anchors.top: row.bottom
-            anchors.horizontalCenter: row.horizontalCenter
+            columnSpacing: 5
+            rowSpacing: 5
+            y: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
             Repeater{
                 model: QtMultimedia.availableCameras
+
                 Rectangle{
                     id: rectCamera
-                    width: Screen.width/3 + border.width*6
-                    height: (1/4)*Screen.width + border.width*6
+                    width: (4/9)*Screen.height + border.width*6
+                    height: (1/3)*Screen.height + border.width*6
                     color: "transparent"
-                    border.color: "#94c93d"
+                    border.color: "#7dd825"
                     border.width: 10
 
                     Camera {
                         id: camera
                         deviceId: QtMultimedia.availableCameras[index]
-                        viewfinder{
-                            resolution: "640x480"
-                        }
+                        viewfinder.resolution: "320x240"
                     }
                     VideoOutput {
                         id: videoOutput
+                        //visible: false
                         source: camera
                         anchors.fill: rectCamera
                         filters: [frameGrabber]
@@ -63,31 +53,40 @@ Window {
                         active: true
                         onFinished: {
                             var bb = e.bboxes();
-                            //console.log("BB: " + bb)
                             var labels = e.labels();
-                            //console.log("labels: " + labels)
                             var classIds = e.classIds();
-                            //console.log("classIds: " + bb)
                             var conf = e.confidences();
-                            //console.log("confidences: " + bb)
                             fpsText.fps = e.fps()
-                            fpsText.deltaT = e.deltaT()
-                            fpsText.fpsAvg = e.fpsAvg()
+                            fpsText.nPeople = bb.length
+
+                            if(e.error()){
+                                fpsText.text = e.error()
+                            }
 
                             resetRects()
-
-                            for (var i = 0; i < bb.length; ++i) {
-                                var xr = videoOutput.width / videoOutput.sourceRect.width
-                                var yr = videoOutput.height / videoOutput.sourceRect.height
-                                var bbox = rectRepeater.itemAt(i)
-                                bbox.x = videoOutput.x + bb[i].x * xr
-                                bbox.y = videoOutput.y + bb[i].y * yr
-                                bbox.width = bb[i].width * xr
-                                bbox.height = bb[i].height * yr
-                                bbox.class_id = classIds[i]
-                                bbox.label = labels[i]
-                                bbox.confidence = conf[i]
-                                bbox.visible = true
+                            if(bb.length > 0 && bb.length < 50){
+                                for (var i = 0; i < bb.length; ++i) {
+                                    var xr = videoOutput.width / videoOutput.sourceRect.width
+                                    var yr = videoOutput.height / videoOutput.sourceRect.height
+                                    var bbox = rectRepeater.itemAt(i)
+                                    bbox.x = videoOutput.x + bb[i].x * xr
+                                    bbox.y = videoOutput.y + bb[i].y * yr
+                                    bbox.width = bb[i].width * xr
+                                    bbox.height = bb[i].height * yr
+                                    bbox.class_id = classIds[i]
+                                    bbox.label = "person"
+                                    bbox.confidence = conf[i]
+                                    bbox.visible = true
+                                }
+                                if(fpsText.nPeople > 1){
+                                    fpsText.text = "FPS: " + Math.round(fpsText.fps).toString() +
+                                      "\n" + fpsText.nPeople.toString() + " people" +
+                                      "\n Camera " + index
+                                } else {
+                                    fpsText.text = "FPS: " + Math.round(fpsText.fps).toString() +
+                                      "\n" + fpsText.nPeople.toString() + " person" +
+                                      "\n Camera " + index
+                                }
                             }
                         }
                     }
@@ -106,13 +105,9 @@ Window {
                         Text {
                             id: fpsText
                             property double fps: 0
-                            property double fpsAvg: 0
-                            property double deltaT: 0
-                            text: "FPS: " + Math.round(fps).toString() +
-                                  "\nDelta T (ms): " + Math.round(deltaT).toString() +
-                                  "\n Camera " + index
+                            property int nPeople: 0
                             color: "white"
-                            font.pixelSize: 15
+                            font.pixelSize: 10
                             anchors.centerIn: parent
                         }
                     }
@@ -146,11 +141,34 @@ Window {
                                           "Class ID: " + rect.class_id
                                     anchors.centerIn: parent
                                     color: "white"
-                                    font.pixelSize: 15
+                                    font.pixelSize: 10
                                 }
                             }
                         }
                     }
+                }
+            }
+            Column{
+                id: row
+                //anchors.right: parent.right
+                //anchors.bottom: parent.bottom
+                //anchors.top: parent.top
+                //anchors.horizontalCenter: parent.horizontalCenter
+                //spacing: Screen.width-toradexLogo.width-xnorLogo.width
+                //leftPadding: 100
+                //bottomPadding: 10
+                spacing: 5
+                Image{
+                    id: toradexLogo
+                    source: "qrc:/imgs/toradex-logo.png"
+                    width: 300
+                    fillMode: Image.PreserveAspectFit
+                }
+                Image{
+                    id: xnorLogo
+                    source: "qrc:/imgs/xnor-logo.png"
+                    width: 300
+                    fillMode: Image.PreserveAspectFit
                 }
             }
         }
