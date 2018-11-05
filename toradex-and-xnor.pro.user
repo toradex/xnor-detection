@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.7.1, 2018-10-24T15:01:21. -->
+<!-- Written by QtCreator 4.7.2, 2018-11-05T11:33:53. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -303,26 +303,26 @@
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX8-Debug/toradex-and-xnor</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
-       <value type="QString">10.22.1.50</value>
        <value type="QString">10.22.1.122</value>
-       <value type="QString">10.22.1.139</value>
+       <value type="QString">10.22.1.103</value>
+       <value type="QString">10.22.1.147</value>
+       <value type="QString">10.22.1.104</value>
+       <value type="QString">10.22.1.91</value>
+       <value type="QString">10.22.1.151</value>
+       <value type="QString">10.22.1.124</value>
+       <value type="QString">10.22.1.138</value>
+       <value type="QString">10.22.1.50</value>
+       <value type="QString">10.22.1.128</value>
+       <value type="QString">10.22.1.156</value>
+       <value type="QString">10.22.1.152</value>
+       <value type="QString">10.22.1.41</value>
        <value type="QString">10.22.1.92</value>
        <value type="QString">10.22.1.131</value>
-       <value type="QString">10.22.1.129</value>
-       <value type="QString">10.22.1.104</value>
-       <value type="QString">10.22.1.36</value>
        <value type="QString">10.22.1.121</value>
-       <value type="QString">10.22.1.138</value>
-       <value type="QString">10.22.1.91</value>
-       <value type="QString">10.22.1.128</value>
-       <value type="QString">10.22.1.103</value>
-       <value type="QString">10.22.1.41</value>
-       <value type="QString">10.22.1.124</value>
-       <value type="QString">10.22.1.152</value>
-       <value type="QString">10.22.1.156</value>
+       <value type="QString">10.22.1.139</value>
+       <value type="QString">10.22.1.129</value>
+       <value type="QString">10.22.1.36</value>
        <value type="QString">10.22.1.49</value>
-       <value type="QString">10.22.1.147</value>
-       <value type="QString">10.22.1.151</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedRemotePaths">
        <value type="QString">/opt/toradex-and-xnor/bin</value>
@@ -369,26 +369,26 @@
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx8/toolchain/sysroots/aarch64-poky-linux</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2018-10-18T13:19:08.419</value>
        <value type="QDateTime">2018-10-09T16:17:41.148</value>
-       <value type="QDateTime">2018-10-11T16:20:32.692</value>
+       <value type="QDateTime">2018-10-05T11:28:18.300</value>
+       <value type="QDateTime">2018-10-15T15:38:13.179</value>
+       <value type="QDateTime">2018-10-11T17:50:57.944</value>
+       <value type="QDateTime">2018-10-24T12:26:44.403</value>
+       <value type="QDateTime">2018-10-15T13:11:52.760</value>
+       <value type="QDateTime">2018-10-09T16:24:35.501</value>
+       <value type="QDateTime">2018-10-11T16:16:27.447</value>
+       <value type="QDateTime">2018-10-18T13:19:08.419</value>
+       <value type="QDateTime">2018-10-10T16:14:59.107</value>
+       <value type="QDateTime">2018-10-15T14:40:27.542</value>
+       <value type="QDateTime">2018-10-15T13:57:01.545</value>
+       <value type="QDateTime">2018-10-18T13:26:00.367</value>
        <value type="QDateTime">2018-10-05T17:09:07.303</value>
        <value type="QDateTime">2018-10-10T16:27:02.790</value>
-       <value type="QDateTime">2018-10-10T16:17:31.157</value>
-       <value type="QDateTime">2018-10-11T17:50:57.944</value>
-       <value type="QDateTime">2018-10-15T18:25:50.840</value>
        <value type="QDateTime">2018-10-09T15:59:56.198</value>
-       <value type="QDateTime">2018-10-11T16:16:27.447</value>
-       <value type="QDateTime">2018-10-24T12:26:44.403</value>
-       <value type="QDateTime">2018-10-10T16:14:59.107</value>
-       <value type="QDateTime">2018-10-05T11:28:18.300</value>
-       <value type="QDateTime">2018-10-18T13:26:00.367</value>
-       <value type="QDateTime">2018-10-09T16:24:35.501</value>
-       <value type="QDateTime">2018-10-15T13:57:01.545</value>
-       <value type="QDateTime">2018-10-15T14:40:27.542</value>
+       <value type="QDateTime">2018-10-11T16:20:32.692</value>
+       <value type="QDateTime">2018-10-10T16:17:31.157</value>
+       <value type="QDateTime">2018-10-15T18:25:50.840</value>
        <value type="QDateTime">2018-10-18T13:16:20.597</value>
-       <value type="QDateTime">2018-10-15T15:38:13.179</value>
-       <value type="QDateTime">2018-10-15T13:11:52.760</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>
@@ -1615,9 +1615,9 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
-       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Profile/toradex-and-xnor</value>
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Release/toradex-and-xnor</value>
        <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Debug/toradex-and-xnor</value>
+       <value type="QString">/home/lburini/qt-tutorials/build-toradex-and-xnor-Boot2Qt_5_11_1_Toradex_Apalis_iMX6-Profile/toradex-and-xnor</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
        <value type="QString">172.16.58.1</value>
@@ -1635,9 +1635,9 @@
        <value type="QString">/home/lburini/Qt_commercial/5.11.1/Boot2Qt/apalis-imx6/toolchain/sysroots/cortexa9hf-neon-poky-linux-gnueabi</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2018-09-27T13:29:11.281</value>
        <value type="QDateTime">2018-09-26T17:02:00.474</value>
        <value type="QDateTime">2018-09-26T15:48:47.664</value>
+       <value type="QDateTime">2018-09-27T13:29:11.281</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>

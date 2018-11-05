@@ -9,20 +9,41 @@ Window {
     id: window
     visible: true
     //visibility: Window.FullScreen
-    width: 1920
-    height: 1080
+    width: 1024
+    height: 600
+
 
 
     Rectangle{
         anchors.fill: parent
         color: "#1f438d"
         //color: "transparent"
+
+        Row{
+            id: row
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: Screen.width-toradexLogo.width-xnorLogo.width
+            //spacing: 5
+            Image{
+                id: toradexLogo
+                source: "qrc:/imgs/toradex-logo.png"
+                width: 300
+                fillMode: Image.PreserveAspectFit
+            }
+            Image{
+                id: xnorLogo
+                source: "qrc:/imgs/xnor-logo.png"
+                width: 300
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
         GridLayout{
-            columns: 2
+            columns: 3
             columnSpacing: 5
             rowSpacing: 5
-            y: 20
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.centerIn: parent
 
             Repeater{
                 model: QtMultimedia.availableCameras
@@ -146,29 +167,6 @@ Window {
                             }
                         }
                     }
-                }
-            }
-            Column{
-                id: row
-                //anchors.right: parent.right
-                //anchors.bottom: parent.bottom
-                //anchors.top: parent.top
-                //anchors.horizontalCenter: parent.horizontalCenter
-                //spacing: Screen.width-toradexLogo.width-xnorLogo.width
-                //leftPadding: 100
-                //bottomPadding: 10
-                spacing: 5
-                Image{
-                    id: toradexLogo
-                    source: "qrc:/imgs/toradex-logo.png"
-                    width: 300
-                    fillMode: Image.PreserveAspectFit
-                }
-                Image{
-                    id: xnorLogo
-                    source: "qrc:/imgs/xnor-logo.png"
-                    width: 300
-                    fillMode: Image.PreserveAspectFit
                 }
             }
         }
