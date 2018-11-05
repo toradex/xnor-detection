@@ -37,7 +37,7 @@ Window {
 
                     Camera {
                         id: camera
-                        deviceId: QtMultimedia.availableCameras[index]
+                        deviceId: String(QtMultimedia.availableCameras[index])
                         viewfinder.resolution: "320x240"
                     }
                     VideoOutput {
