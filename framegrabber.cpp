@@ -103,8 +103,6 @@ QVideoFrame FilterRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &s
                 r->m_fps = 1000/timer.elapsed();
                 r->m_deltaT = timer.elapsed();
                 r->m_fpsAvg = 1000*frameCount/timerAvg.elapsed();
-                //qDebug() << "BBOXES READY";
-                //emit m_frameGrabber->finished(r);
                 emit m_frameGrabber->finished(r);
                 break;
                 }

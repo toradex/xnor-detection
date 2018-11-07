@@ -13,7 +13,8 @@ Window {
     Rectangle{
         anchors.fill: parent
         color: "#015289"
-        Row{
+        // uncomment this to change layout
+        /*Row{
             id: row
             anchors.top: parent.top
             spacing: Screen.width-toradexLogo.width-xnorLogo.width
@@ -26,14 +27,13 @@ Window {
                 id: xnorLogo
                 source: "qrc:/imgs/xnor-ai-logo.png"
             }
-        }
+        }*/
 
         GridLayout{
             columns: 2
             columnSpacing: 20
             rowSpacing: 20
-            anchors.top: row.bottom
-            anchors.horizontalCenter: row.horizontalCenter
+            anchors.centerIn: parent
             Repeater{
                 model: QtMultimedia.availableCameras
                 Rectangle{
@@ -46,9 +46,9 @@ Window {
 
                     Camera {
                         id: camera
-                        deviceId: QtMultimedia.availableCameras[index]
+                        deviceId: String(QtMultimedia.availableCameras[index])
                         viewfinder{
-                            resolution: "640x480"
+                            resolution: "320x240"
                         }
                     }
                     VideoOutput {
@@ -63,13 +63,9 @@ Window {
                         active: true
                         onFinished: {
                             var bb = e.bboxes();
-                            //console.log("BB: " + bb)
                             var labels = e.labels();
-                            //console.log("labels: " + labels)
                             var classIds = e.classIds();
-                            //console.log("classIds: " + bb)
                             var conf = e.confidences();
-                            //console.log("confidences: " + bb)
                             fpsText.fps = e.fps()
                             fpsText.deltaT = e.deltaT()
                             fpsText.fpsAvg = e.fpsAvg()
@@ -118,7 +114,7 @@ Window {
                     }
                     Repeater{
                         id: rectRepeater
-                        model: 10
+                        model: 50
 
                         Rectangle{
                             id: rect
@@ -151,6 +147,23 @@ Window {
                             }
                         }
                     }
+                }
+            }
+            Column{
+                id: column
+                spacing: 5
+                //anchors.horizontalCenter: parent.horizontalCenter
+                Image{
+                    id: toradexLogo
+                    source: "qrc:/imgs/toradex-logo.png"
+                    width: 300
+                    fillMode: Image.PreserveAspectFit
+                }
+                Image{
+                    id: xnorLogo
+                    source: "qrc:/imgs/xnor-ai-logo.png"
+                    width: 300
+                    fillMode: Image.PreserveAspectFit
                 }
             }
         }

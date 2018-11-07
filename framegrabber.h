@@ -15,7 +15,7 @@
 
 #include <public.h>
 
-#define MAX_OUT_SIZE 10
+#define MAX_OUT_SIZE 50
 
 class FrameGrabber : public QAbstractVideoFilter
 {
