@@ -2,6 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>imgs/toradex-logo.png</file>
-        <file>imgs/xnor-ai-logo.png</file>
+        <file>imgs/xnor-logo.png</file>
     </qresource>
 </RCC>

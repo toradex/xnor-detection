@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <framegrabber.h>
+#include <videooverlay.h>
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 
     //
     qmlRegisterType<FrameGrabber>("qt.toradex.xnor", 1, 0, "FrameGrabber");
+    qmlRegisterType<VideoOverlay>("qt.toradex.xnor", 1, 0, "VideoOverlay");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
