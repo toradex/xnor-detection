@@ -26,6 +26,12 @@ The present demo streams video from a camera, gets each frame (as a QVideoFrame 
 
 - Replace the updated library in the project, recompile on Qt Creator and run on the module.
 
+## XNOR.ai contact information
+
+- Jeff Zhu (jeff@xnor.ai) - main technical point of contact.
+
+- Carlo C del Mundo (carlo@xnor.ai) - first contact.
+
 # Developer Information
 
 - The FrameGrabber class is a filter available to the frontend (in QML). 
