@@ -39,3 +39,9 @@ The present demo streams video from a camera, gets each frame (as a QVideoFrame 
 - The FrameGrabber class is a filter available to the frontend (in QML). 
 - Each frame is will be passed to XNOR C++ class in FilterRunnable class (run method). 
 - The FilterResult class has the attributes to hold lists of parameters calculated that point to the detected objects (x, y, width, height, label, class_id and confidence). For now are being generated randomly 
+
+# ToDo
+
+- [ ] Create a TEZI image with both libatomic and the license tool already included.
+- [ ] Add the compiled Qt application to the image, dinamically linked to the XNOR.ai library.
+- [ ] Create a means to update the library once provided by XNOR.ai.
