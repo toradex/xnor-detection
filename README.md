@@ -20,9 +20,11 @@ The present demo streams video from a camera, gets each frame (as a QVideoFrame 
 
 - Prepare the module with a Boot2Qt image.
 
-- Run the [binary license tool](/tools) on the module you want to run the demo.
+- Install on the module the [libatomic library](/tools) required to run the binary license tool.
 
-- Send the result output ot XNOR.ai and request an updated library.
+- Run the [binary license tool](/tools) on the exact SoM hardware that you want to run the demo.
+
+- Send the result output to XNOR.ai and request an updated xnor library.
 
 - Replace the updated library in the project, recompile on Qt Creator and run on the module.
 
