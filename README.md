@@ -32,6 +32,8 @@ Redmine demo ticket: [Demo: XNOR.ai](http://redmine.toradex.int/issues/43244)
 
 - Add the libxnorai-fast-person-detector.so to /usr/lib in Apalis iMX8.
 
+- Add the [max_cpu.sh](http://gitlab.toradex.int/demos/xnor-detection/blob/master/max_cpu.sh) script to the Apalis iMX8 and make it run on startup.
+
 - Deploy the compiled demo to Apalis iMX8.
 
 ## XNOR.ai contact information
