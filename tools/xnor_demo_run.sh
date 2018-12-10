@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Set both A53 and A72 cores at max CPU frequency
 export FREQ=1200000
 export FREQ2=1596000
 
@@ -14,4 +14,5 @@ echo "$FREQ2" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 echo "$FREQ2" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 echo "$FREQ2" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_setspeed
 
+# Start the application
 /usr/bin/appcontroller /opt/toradex-and-xnor/bin/toradex-and-xnor
