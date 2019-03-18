@@ -7,8 +7,6 @@ coordinates, taking this result to generate rectangles (x, y, width and height)
 with labels, confidence and class_id. In the frontend, these rectangles are drew
 with its characteristics.
 
-Redmine demo ticket: [Demo: XNOR.ai](http://redmine.toradex.int/issues/43244)
-
 # How to use the demo
 
 ## Hardware
