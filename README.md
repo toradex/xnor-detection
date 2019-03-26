@@ -1,13 +1,17 @@
-# XNOR.ai and Toradex demo
+# XNOR.ai and Toradex Sample
 
-The present demo streams video from a camera, gets each frame (as a QVideoFrame
+The present sample streams video from a camera, gets each frame (as a QVideoFrame
 in YUV format but easily portable to a uchar pointer to the start od the frame
 data buffer) and runs the XNOR.ai inference engine to get person detection
 coordinates, taking this result to generate rectangles (x, y, width and height)
 with labels, confidence and class_id. In the frontend, these rectangles are drew
 with its characteristics.
 
-# How to use the demo
+This sample uses the Boot2Qt image available in Qt for Device Creation from
+The Qt Company. If you want to use it for commercial purposes, make sure to
+comply to The Qt Company licensing.
+
+# How to use the sample
 
 ## Hardware
 
@@ -62,4 +66,4 @@ class_id and confidence).
 included.
 - [ ] Add the compiled Qt application to the image, dinamically linked to the
 XNOR.ai library.
-- [ ] Create aiutomatic means to update the library once provided by XNOR.ai.
+- [ ] Create automatic means to update the library once provided by XNOR.ai.
