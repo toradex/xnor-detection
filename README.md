@@ -50,9 +50,7 @@ on startup.
 
 ## XNOR.ai contact information
 
-- Jeff Zhu (jeff@xnor.ai) - main technical point of contact.
-
-- Carlo C del Mundo (carlo@xnor.ai) - first contact.
+[XNOR.ai partner page on Toradex website](https://www.toradex.com/support/partner-network/services/100008/xnorai).
 
 # Developer Information
 
