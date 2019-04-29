@@ -11,6 +11,8 @@ This sample uses the Boot2Qt image available in Qt for Device Creation from
 The Qt Company. If you want to use it for commercial purposes, make sure to
 comply to The Qt Company licensing.
 
+[![Edge AI with XNOR.ai and Toradex Apalis iMX8](http://img.youtube.com/vi/epWmEXY63F0/0.jpg)](http://www.youtube.com/watch?v=epWmEXY63F0)
+
 # How to use the sample
 
 ## Hardware
@@ -64,6 +66,6 @@ class_id and confidence).
 
 - [ ] Create a TEZI image with both libatomic and the license tool already
 included.
-- [ ] Add the compiled Qt application to the image, dinamically linked to the
+- [ ] Add the compiled Qt application to the image, dynamically linked to the
 XNOR.ai library.
 - [ ] Create automatic means to update the library once provided by XNOR.ai.
